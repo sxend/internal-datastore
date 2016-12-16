@@ -1,5 +1,5 @@
 
-```
+```bash
 BASE_DIR=$(eval echo ~$USER)/.mysql/internal-rdb && \
 mkdir -p ${BASE_DIR}/var/lib/mysql && \
 mkdir -p ${BASE_DIR}/etc/mysql/conf.d && \
