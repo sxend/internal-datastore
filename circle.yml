@@ -1,0 +1,20 @@
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+  environment:
+    APP_VERSION: b${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1}
+dependencies:
+  pre:
+    - mkdir -p ~/.aws
+    - envsubst < .aws/credentials.template > ~/.aws/credentials
+    - envsubst < .aws/config.template > ~/.aws/config
+test:
+  override:
+    - echo test
+deployment:
+  publish:
+    branch: master
+    commands:
+      - aws s3 cp ./scripts/rdb.sh s3://public.arimit.su/internal/storage/scripts/rdb.sh
+      - aws s3 cp ./scripts/cassandra.sh s3://public.arimit.su/internal/storage/scripts/cassandra.sh
+      - aws s3 cp ./scripts/cache.sh s3://public.arimit.su/internal/storage/scripts/cache.sh
