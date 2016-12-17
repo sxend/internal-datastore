@@ -15,6 +15,7 @@ deployment:
   publish:
     branch: master
     commands:
+      - aws s3 cp --recursive ./rdb/conf.d/ s3://internal-storage.arimit.su/internal-rdb/etc/mysql/conf.d/
       - aws s3 cp ./scripts/rdb.sh s3://public.arimit.su/internal/storage/scripts/rdb.sh
       - aws s3 cp ./scripts/cassandra.sh s3://public.arimit.su/internal/storage/scripts/cassandra.sh
       - aws s3 cp ./scripts/cache.sh s3://public.arimit.su/internal/storage/scripts/cache.sh
