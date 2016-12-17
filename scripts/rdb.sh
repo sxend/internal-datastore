@@ -17,7 +17,7 @@ mkdir -p ${BASE_DIR}/var/lib/mysql && \
 mkdir -p ${BASE_DIR}/etc/mysql/conf.d && \
 aws s3 cp --recursive s3://internal-storage.arimit.su/${NAME}/etc/mysql/conf.d/ ${BASE_DIR}/etc/mysql/conf.d/ && \
 sudo docker pull mysql:5.7.17 && \
-sudo docker run -d --name ${NAME} \
+sudo docker run -it -d --name ${NAME} \
   -v ${BASE_DIR}/var/lib/mysql:/var/lib/mysql \
   -v ${BASE_DIR}/etc/mysql/conf.d:/etc/mysql/conf.d \
   -p 3306:3306 \
