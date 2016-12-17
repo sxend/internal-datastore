@@ -4,13 +4,6 @@ CLUSTER_NAME=$1
 
 NAME=internal-cassandra
 
-SEED_NAME=internal-cassandra-seed-0
-
-if [ "$(sudo docker ps -q --filter "NAME=${NAME}" | wc -l)" -eq "1" ]; then
-  sudo docker kill ${NAME}
-  SEED_NAME=internal-cassandra-seed-0
-fi
-
 if [ "$(sudo docker ps -q --filter "NAME=${NAME}" | wc -l)" -eq "1" ]; then
   sudo docker kill ${NAME}
 fi
@@ -23,7 +16,7 @@ BASE_DIR=$(eval echo ~$USER)/.${NAME} && \
 mkdir -p ${BASE_DIR}/var/lib/cassandra && \
 sudo docker run --name ${NAME} -it -d  \
   -e CASSANDRA_LISTEN_ADDRESS=auto \
-  -e CASSANDRA_SEEDS="$(docker inspect --format='{{ .NetworkSettings.IPAddress }}' some-cassandra)" \
+  -e CASSANDRA_SEEDS="$(docker inspect --format='{{ .NetworkSettings.IPAddress }}' ${NAME})" \
   -e CASSANDRA_CLUSTER_NAME=${CLUSTER_NAME} \
   -e CASSANDRA_NUM_TOKENS=512 \
   -v /my/own/datadir:/var/lib/cassandra \
