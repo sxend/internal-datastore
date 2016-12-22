@@ -17,7 +17,7 @@ mkdir -p ${BASE_DIR}/etc/mysql/conf.d && \
 aws s3 cp --recursive s3://internal-storage.onplatforms.net/internal/datastore/${NAME}/etc/mysql/conf.d/ ${BASE_DIR}/etc/mysql/conf.d/ && \
 aws s3 cp --recursive s3://internal-storage.onplatforms.net/internal/datastore/${NAME}/docker-entrypoint-initdb.d/ ${BASE_DIR}/docker-entrypoint-initdb.d/ && \
 sudo docker pull mysql:5.7.17 && \
-sudo docker run -it --name ${NAME} \
+sudo docker run -it -d --name ${NAME} \
   -v ${BASE_DIR}/var/lib/mysql:/var/lib/mysql \
   -v ${BASE_DIR}/etc/mysql/conf.d:/etc/mysql/conf.d \
   -v ${BASE_DIR}/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d \
