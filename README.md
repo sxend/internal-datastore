@@ -2,7 +2,7 @@
 
 ####internal-rdb command
 ```bash
-curl -s https://s3-ap-northeast-1.amazonaws.com/public.onplatforms.net/internal/datastore/scripts/rdb.sh | sh -s -- accounts.onplatforms.net
+curl -s https://s3-ap-northeast-1.amazonaws.com/public.onplatforms.net/internal/datastore/scripts/rdb.sh | sh
 ```
 
 #### internal-cassandra
